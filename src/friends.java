@@ -29,6 +29,8 @@ static Scanner stdin = new Scanner(System.in);
 		System.out.print("Enter HTML file name => ");
 		String htmlFile = stdin.next();
 		
+		Graph friends = new Graph();
+		
 		char option;
 		while ((option = getOption()) != 'q') {
 		
