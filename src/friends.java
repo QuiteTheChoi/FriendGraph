@@ -13,17 +13,29 @@ static Scanner stdin = new Scanner(System.in);
 		System.out.println("(3) Cliques");
 		System.out.println("(4) Connectors");
 		System.out.println("(5) Quit");
-		char response = stdin.next().toLowerCase().charAt(0);
-		while (response != 'p' && response != 'r' && response != 'b' && response != 'd' && response != 'a' && response != 'q') {
-			System.out.print("\tYou must enter one of p, r, b, d, a, or q => ");
-			response = stdin.next().toLowerCase().charAt(0);
+		String check = stdin.next();
+		char response = check.charAt(0);
+		while ((response != '1' && response != '2' && response != '3' && response != '4' && response != '5') || check.length() > 1) {
+			System.out.print("\tPlease enter '1', '2', '3', '4' or '5': ");
+			check = stdin.next();
+			response = check.charAt(0);
 		}
 		return response;
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) 
+			throws IOException {
+		
+		System.out.print("Enter HTML file name => ");
+		String htmlFile = stdin.next();
+		
+		char option;
+		while ((option = getOption()) != 'q') {
+		
+			System.out.println("Test");
+		
+		}
+				
 	}
 
 }
