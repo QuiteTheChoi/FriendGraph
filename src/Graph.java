@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 //Undirected, unweighted graph
 
 //Friendship edges
@@ -33,8 +36,21 @@ class Vertex {
 	}
 }
 
+//start of Friendship graph
+
 public class Graph {
 	
+	private Vertex[] adjList;
+	private HashMap<String, Integer> IntLocation = new HashMap<String, Integer> ();  
 	
+	public Graph(String graphFile) throws FileNotFoundException {
+		Scanner sc = new Scanner(new File(graphFile));
+		
+		int countOfVertex = sc.nextInt();
+				
+		while (sc.hasNextLine()) {
+			System.out.println (sc.nextLine());
+		}
+	}
 
 }
