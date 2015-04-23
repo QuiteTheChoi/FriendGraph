@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.lang.*;
 
 //Undirected, unweighted graph
 
@@ -13,10 +14,15 @@ public class Graph {
 		Scanner sc = new Scanner(new File(graphFile));
 		
 		int countOfVertex = sc.nextInt();
-				
-		while (sc.hasNextLine()) {
-			System.out.println (sc.nextLine());
+			
+		for (int i = 0; i < countOfVertex; i ++) {
+			String str = sc.next();
+			StringTokenizer st = new StringTokenizer(str, "|");
+			while (st.hasMoreElements()) {
+				System.out.println(st.nextElement());
+			}
 		}
+		
 	}
 
 }

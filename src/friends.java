@@ -1,7 +1,5 @@
-import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class friends {
 static Scanner stdin = new Scanner(System.in);
