@@ -52,34 +52,36 @@ public class Graph {
 	
 	public class ShortestPath {
 		
-		public ShortestPath(String src, String target) throws Exception
+		public void ShortestPath(String src, String target) throws Exception
 		{
-			if (src == null || target == null)
+			if (!FriendList.containsKey(src) || !FriendList.containsKey(target))
 			{
 				throw new Exception("Invalid Input");
-			}
-			
-			if (FriendList.get(src) == null || FriendList.get(target) == null)
-			{
-				throw new Exception("Inputs don't exist.");
 			}
 			
 			src = src.toLowerCase();
 			target = target.toLowerCase();
 			
-			int distance; 
-			
 			Queue<FriendTex> visited = new LinkedList<FriendTex>();
 			
 			FriendTex start = FriendList.get(src);
 			FriendTex end = FriendList.get(target);
-			FriendTex prev = null;
+			FriendTex curr = start;
 			
-			for (String key: FriendList.keySet())
+			visited.add(curr);
+			while (!visited.isEmpty())
 			{
+				curr = visited.remove();
 				
+				if (curr.equals(end))
+				{
+					break;
+				} else 
+				{
+					NeighborNode tmp = curr.NeighborN;
+					for ()
+				}
 			}
-			
 		}
 	}
 
