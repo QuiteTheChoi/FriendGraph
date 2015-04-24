@@ -18,9 +18,13 @@ public class Graph {
 			
 		for (int i = 0; i < countOfVertex; i ++) {
 			String str = sc.nextLine();
+			str.toLowerCase();
 			StringTokenizer st = new StringTokenizer(str, "|");
 			if (st.countTokens()==3) {				//Student getting added
-				FriendTex temp = new FriendTex (st.nextToken(),st.nextToken());
+				String name = st.nextToken();
+				st.nextToken();
+				String univ = st.nextToken();
+				FriendTex temp = new FriendTex (name,univ);
 				FriendList.put(temp.name, temp);
 			}
 			else {   //teachera getting added 
@@ -29,12 +33,22 @@ public class Graph {
 			}
 			
 		}
-		
-		for (int i = 0; i < countOfVertex; i++) {
-			//Add neighbora here.
+		//Creation of neighbors
+		while (sc.hasNextLine()) {
+			String str = sc.nextLine();
+			str.toLowerCase();
+			StringTokenizer st = new StringTokenizer(str, "|");
+			String friend1 = st.nextToken();	//friend 1 name
+			String friend2 = st.nextToken();	//friend 2 name
+			
+			FriendList.get(friend1).add(FriendList.get(friend2));
+			FriendList.get(friend2).add(FriendList.get(friend1));
+			
 		}
 		
 	}
+	
+	
 	
 	public class ShortestPath {
 		
