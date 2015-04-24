@@ -1,48 +1,24 @@
 public class FriendTex {
 	public String name;
-	public String university;
-	public FriendTex firstNeighbor; //first neighbor
-	public FriendTex lastNeighbor; //Last neighbor
-		
-	public FriendTex (String fName, String uName, FriendTex neighs) {
-		name = fName;
-		university = uName;		
-		firstNeighbor = neighs;
-	}
+	public String university = "";
+	public NeighborNode neighbor = null; //first neighbor
 	
+		
 	public FriendTex (String fName, String uName) {
 		name = fName;
 		university = uName;		
-		firstNeighbor = null;
-		lastNeighbor = null;
-	}
-	
-	public FriendTex (String fName, FriendTex neighs) {
-		name = fName;
-		university = "";		
-		firstNeighbor = neighs;
 	}
 	
 	public FriendTex (String fName) {
 		name = fName;
-		university = "";		
-		firstNeighbor = null;
-		lastNeighbor = null;
+		
 	}
 	
-	public void add (FriendTex neigh) {
-		if (firstNeighbor == null) {
-			firstNeighbor = neigh;
-			lastNeighbor = neigh;
-		}
-		else if (lastNeighbor == firstNeighbor) {
-			firstNeighbor.lastNeighbor = neigh;
-			lastNeighbor = neigh;
-		}
-		else {
-			lastNeighbor.lastNeighbor = neigh;
-		}
-		
+	public boolean equals(FriendTex compareTo) {
+		if (this.name.equals(compareTo.name))
+			return true;
+		else
+			return false;
 	}
 	
 	public String toString() {
