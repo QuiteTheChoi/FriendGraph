@@ -23,11 +23,15 @@ public class Graph {
 				FriendTex temp = new FriendTex (st.nextToken(),st.nextToken());
 				FriendList.put(temp.name, temp);
 			}
-			else {
+			else {   //teachera getting added 
 				FriendTex temp = new FriendTex (st.nextToken());
 				FriendList.put(temp.name, temp);
 			}
 			
+		}
+		
+		for (int i = 0; i < countOfVertex; i++) {
+			//Add neighbora here.
 		}
 		
 	}
