@@ -24,16 +24,18 @@ static Scanner stdin = new Scanner(System.in);
 	public static void main(String[] args) 
 			throws IOException {
 		
-		System.out.print("Enter HTML file name => ");
-		String htmlFile = stdin.next();
+		System.out.print("Enter Friendship Graph file: ");
+		String graphFile = stdin.next();
 		
-		Graph friends = new Graph();
+		Graph friends = new Graph(graphFile);
 		
 		char option;
 		while ((option = getOption()) != 'q') {
 		
 			System.out.println("Test");
 		
-		}		
+		}
+				
 	}
+
 }
