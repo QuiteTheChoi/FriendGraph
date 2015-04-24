@@ -14,13 +14,20 @@ public class Graph {
 		Scanner sc = new Scanner(new File(graphFile));
 		
 		int countOfVertex = sc.nextInt();
+		sc.nextLine();
 			
 		for (int i = 0; i < countOfVertex; i ++) {
-			String str = sc.next();
+			String str = sc.nextLine();
 			StringTokenizer st = new StringTokenizer(str, "|");
-			while (st.hasMoreElements()) {
-				System.out.println(st.nextElement());
+			if (st.countTokens()==3) {				//Student getting added
+				FriendTex temp = new FriendTex (st.nextToken(),st.nextToken());
+				FriendList.put(temp.name, temp);
 			}
+			else {
+				FriendTex temp = new FriendTex (st.nextToken());
+				FriendList.put(temp.name, temp);
+			}
+			
 		}
 		
 	}
