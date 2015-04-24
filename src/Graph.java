@@ -35,5 +35,26 @@ public class Graph {
 		}
 		
 	}
+	
+	public class ShortestPath {
+		
+		public ShortestPath(String src, String target) throws Exception
+		{
+			if (src == null || target == null)
+			{
+				throw new Exception("Invalid Input");
+			}
+			
+			if (FriendList.get(src) == null || FriendList.get(target) == null)
+			{
+				throw new Exception("Inputs don't exist.");
+			}
+			
+			src = src.toLowerCase();
+			target = target.toLowerCase();
+			
+			
+		}
+	}
 
 }
