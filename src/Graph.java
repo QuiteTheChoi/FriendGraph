@@ -47,6 +47,8 @@ public class Graph {
 			FriendTex firstF = FriendList.get(friend1);
 			FriendTex secondF = FriendList.get(friend2);
 			
+			if firstF.university
+			
 			NeighborNode temp1 = new NeighborNode (friend1);
 			NeighborNode temp2 = new NeighborNode (friend2);
 			
@@ -130,10 +132,8 @@ public class Graph {
 		FriendTex end = FriendList.get(target);
 		NeighborNode curr = new NeighborNode(start.name);
 		q.add(curr);
-		//list.append(start + ", ");
 		HashMap<String, String> prevNaybs = new HashMap<String, String>();
 		ArrayList<String> VisitMap = new ArrayList<String> ();
-		//NeighborNode tmp = start.list.front;
 		mainloop:	
 		while (!q.isEmpty()) {
 				curr = q.remove();
