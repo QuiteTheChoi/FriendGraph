@@ -76,7 +76,7 @@ public class Graph {
 		
 	}
 	
-	public ArrayList cligues (String univName) throws NoSuchElementException {
+	public ArrayList cliques (String univName) throws NoSuchElementException {
 		if (!UniversityList.containsKey(univName)) {
 			throw new NoSuchElementException();
 		}

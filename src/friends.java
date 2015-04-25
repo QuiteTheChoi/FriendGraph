@@ -31,8 +31,15 @@ static Scanner stdin = new Scanner(System.in);
 		
 		char option;
 		while ((option = getOption()) != 'q') {
-		
-			System.out.println("Test");
+			if (option == '2') {
+				try {
+				System.out.println(friends.ShortestPath("nick", "ming"));
+				}
+				catch (Exception e){
+					System.out.println("Test error");
+				}
+				
+			}
 		
 		}
 				
