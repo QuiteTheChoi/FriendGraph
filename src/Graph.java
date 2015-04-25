@@ -74,7 +74,6 @@ public class Graph {
 	
 	public Graph () {
 		
-		public void ShortestPath(String src, String target) throws Exception
 	}
 	
 	public ArrayList cligues (String univName) throws NoSuchElementException {
