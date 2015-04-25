@@ -78,8 +78,13 @@ public class Graph {
 					break;
 				} else 
 				{
-					NeighborNode tmp = curr.NeighborN;
-					for ()
+					for (NeighborNode tmp = curr.neighbor; tmp!= null; tmp = tmp.next)
+					{
+						if (!visited.contains(tmp))
+						{
+							visited.add(tmp);
+						}
+					}
 				}
 			}
 		}
