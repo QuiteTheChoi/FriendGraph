@@ -138,6 +138,7 @@ public class Graph {
 		while (!q.isEmpty())
 			{
 				curr = q.remove();
+<<<<<<< HEAD
 				VisitMap.add (curr.name);
 				NeighborNode tmp = FriendList.get(curr.name).list.front;
 				while (tmp != null){
@@ -149,6 +150,20 @@ public class Graph {
 						}
 					}
 					tmp = tmp.next;
+=======
+				list.append(curr+", ");
+				if (curr.equals(end))
+				{
+					break;
+				} else 
+				{
+				
+						if (!q.contains(curr))
+						{
+							q.add(curr);
+						}
+					
+>>>>>>> origin/master
 				}
 					
 					
