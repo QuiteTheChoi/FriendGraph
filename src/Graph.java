@@ -27,7 +27,7 @@ public class Graph {
 				FriendTex temp = new FriendTex (name,univ);
 				FriendList.put(temp.name, temp);
 			}
-			else {   //teachera getting added 
+			else {   //teacher getting added 
 				FriendTex temp = new FriendTex (st.nextToken());
 				FriendList.put(temp.name, temp);
 			}
@@ -41,8 +41,29 @@ public class Graph {
 			String friend1 = st.nextToken();	//friend 1 name
 			String friend2 = st.nextToken();	//friend 2 name
 			
-			FriendList.get(friend1).add(FriendList.get(friend2));
-			FriendList.get(friend2).add(FriendList.get(friend1));
+			FriendTex firstF = FriendList.get(friend1);
+			FriendTex secondF = FriendList.get(friend2);
+			
+			NeighborNode temp1 = new NeighborNode (friend1);
+			NeighborNode temp2 = new NeighborNode (friend2);
+			
+			if (firstF.list == null) {				//Adding new list to first friend
+				firstF.list = new NeighborList();
+				firstF.list.front = temp2;
+				firstF.list.tail = temp2;
+			}
+			else {
+				firstF.list.add(friend2);			//Adding on to list
+			}
+			
+			if (secondF.list == null) {
+				secondF.list = new NeighborList();
+				secondF.list.front = temp1;
+				secondF.list.tail = temp1;
+			}
+			else {
+				secondF.list.add(friend1);
+			}
 			
 		}
 		
