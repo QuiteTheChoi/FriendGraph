@@ -70,8 +70,9 @@ public class Graph {
 	}
 	
 		
-		public void ShortestPath(String src, String target) throws Exception
+		public StringBuilder ShortestPath(String src, String target) throws Exception
 		{
+			StringBuilder list = new StringBuilder();
 			if (!FriendList.containsKey(src) || !FriendList.containsKey(target))
 			{
 				throw new Exception("Invalid Input");
@@ -80,31 +81,38 @@ public class Graph {
 			src = src.toLowerCase();
 			target = target.toLowerCase();
 			
-			Queue<FriendTex> visited = new LinkedList<FriendTex>();
+			Queue<NeighborNode> q = new LinkedList<NeighborNode>();
 			
 			FriendTex start = FriendList.get(src);
 			FriendTex end = FriendList.get(target);
-			FriendTex curr = start;
+			NeighborNode curr;
+			list.append(start + ", ");
 			
-			visited.add(curr);
-			while (!visited.isEmpty())
-			{
-				curr = visited.remove();
-				
-				if (curr.equals(end))
+			q.add(start.list.front);
+				while (!q.isEmpty())
 				{
-					break;
-				} else 
-				{
-					for (NeighborNode tmp = curr.neighbor; tmp!= null; tmp = tmp.next)
+					curr = q.remove();
+					list.append(curr+", ");
+					if (curr.equals(end))
 					{
-						if (!visited.contains(tmp))
+						break;
+					} else 
+					{
+						
+						while (curr != null)
 						{
-							visited.add(tmp);
+							if (!q.contains(curr))
+							{
+								q.add(curr);
+							}
 						}
 					}
 				}
-			}
-		}
+				
+				return list;
+		 }
+		
 
 }
+
+

@@ -1,5 +1,5 @@
 public class FriendTex {
-	public String name;
+	public String name = "";
 	public String university = "";
 	public NeighborList list = null;
 	
@@ -13,6 +13,8 @@ public class FriendTex {
 		name = fName;
 		
 	}
+	
+	public FriendTex(){}
 	
 	public boolean equals(FriendTex compareTo) {
 		if (this.name.equals(compareTo.name))
