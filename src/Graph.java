@@ -128,31 +128,46 @@ public class Graph {
 		
 		FriendTex start = FriendList.get(src);
 		FriendTex end = FriendList.get(target);
-		NeighborNode curr;
-		list.append(start + ", ");
-		
-		q.add(start.list.front);
-			while (!q.isEmpty())
+		NeighborNode curr = new NeighborNode(start.name);
+		q.add(curr);
+		//list.append(start + ", ");
+		HashMap<String, String> prevNaybs = new HashMap<String, String>();
+		ArrayList<String> VisitMap = new ArrayList<String> ();
+		//NeighborNode tmp = start.list.front;
+		mainloop:	
+		while (!q.isEmpty())
 			{
 				curr = q.remove();
-				list.append(curr+", ");
-				if (curr.equals(end))
-				{
-					break;
-				} else 
-				{
-					
-					while (curr != null)
-					{
-						if (!q.contains(curr))
-						{
-							q.add(curr);
+				VisitMap.add (curr.name);
+				NeighborNode tmp = FriendList.get(curr.name).list.front;
+				while (tmp != null){
+					if (!VisitMap.contains(tmp.name)) {
+						q.add(tmp);
+						prevNaybs.put(tmp.name,curr.name);
+						if (tmp.name.equals(end.name)) {
+							break mainloop;
 						}
 					}
+					tmp = tmp.next;
 				}
+					
+					
 			}
 			
-			return list;
+		if (!prevNaybs.containsKey(target)) {
+			StringBuilder error = new StringBuilder("no");
+			return error;
+		}
+		
+		while (prevNaybs.containsKey(target)) {
+				String prevName = prevNaybs.get(target);
+				list.insert(0,", " + target);
+				target = prevName;
+			}
+			
+		list.insert(0,start.name);
+		
+		return list;
 	 }
 
 }

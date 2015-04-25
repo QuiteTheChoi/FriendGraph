@@ -33,7 +33,7 @@ static Scanner stdin = new Scanner(System.in);
 		while ((option = getOption()) != 'q') {
 			if (option == '2') {
 				try {
-				System.out.println(friends.ShortestPath("nick", "ming"));
+				System.out.println(friends.ShortestPath("will", "aparna"));
 				}
 				catch (Exception e){
 					System.out.println("Test error");

@@ -25,7 +25,7 @@ public class FriendTex {
 		if (university.equals(""))
 			return name + "|" + "n";
 		else
-			return name+ "|" + university;
+			return name+ "|" + "y" + "|" + university;
 		
 	}
 }
