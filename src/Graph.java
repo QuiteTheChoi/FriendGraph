@@ -78,6 +78,40 @@ public class Graph {
 		
 	}
 	
+	public String toString()
+	{
+		StringBuilder graph = new StringBuilder();
+		int count=0;
+		HashMap<String, ArrayList> namesareforfriends = new HashMap<String, ArrayList>();
+		for (String name: FriendList.keySet())
+		{
+			count++;
+		}
+		graph.append(count+"/n");
+		for (String name: FriendList.keySet())
+		{
+			ArrayList<NeighborNode> friends = new ArrayList<NeighborNode>();
+			NeighborNode tmp = FriendList.get(name).list.front;
+			while (tmp != null)
+			{
+				friends.add(tmp);
+				tmp = tmp.next;
+			}
+			namesareforfriends.put(name, friends);
+		}
+		for (String name : namesareforfriends.keySet())
+		{
+			graph.append(FriendList.get(name).toString() + "/n");
+			ArrayList<NeighborNode> list = namesareforfriends.get(name);
+			
+			for (NeighborNode n : list)
+			{
+				graph.append(n.toString() + "/n");
+			}
+		}
+		return graph.toString();
+	}
+	
 	public ArrayList cliques (String univName) throws NoSuchElementException {
 		if (!UniversityList.containsKey(univName)) {
 			throw new NoSuchElementException();
