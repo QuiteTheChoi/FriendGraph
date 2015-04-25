@@ -1,7 +1,7 @@
 public class FriendTex {
 	public String name;
 	public String university = "";
-	public NeighborNode neighbor = null; //first neighbor
+	public NeighborList list = null;
 	
 		
 	public FriendTex (String fName, String uName) {
