@@ -1,5 +1,5 @@
 public class FriendTex {
-	public String name;
+	public String name = "";
 	public String university = "";
 	public NeighborList list = null;
 	
@@ -11,6 +11,10 @@ public class FriendTex {
 	
 	public FriendTex (String fName) {
 		name = fName;
+		
+	}
+	
+	public FriendTex () {
 		
 	}
 	
