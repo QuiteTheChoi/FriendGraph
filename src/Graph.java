@@ -48,9 +48,6 @@ public class Graph {
 		
 	}
 	
-	
-	
-	public class ShortestPath {
 		
 		public void ShortestPath(String src, String target) throws Exception
 		{
@@ -88,6 +85,5 @@ public class Graph {
 				}
 			}
 		}
-	}
 
 }
