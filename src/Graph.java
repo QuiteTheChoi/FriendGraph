@@ -103,31 +103,37 @@ public class Graph {
 		Iterator<String> itr = word.iterator();
 		
 		while (itr.hasNext()) {
-			FriendTex tempTex = new FriendTex (FriendList.get(itr));					//Iterating through FriendList
+			FriendTex tempTex = new FriendTex (FriendList.get(itr.next()));					//Iterating through FriendList
+			Graph temp = new Graph();
 			if (!VisitMap.contains(tempTex.name)&& tempTex.university.equals(univName)) {  //Clique has not been made
+				//temp.FriendList.put(tempTex.name, tempTex);
 				Queue<NeighborNode> qNeigh = new LinkedList<NeighborNode>();
-				Queue<NeighborNode> qClique = new LinkedList<NeighborNode>();
+				Queue<String> qClique = new LinkedList<String>();
 				NeighborNode curr = new NeighborNode(tempTex.name,tempTex.university);
 				qNeigh.add(curr);
-				ArrayList<String> LocalVisMap = new ArrayList<String> ();
+				//ArrayList<String> LocalVisMap = new ArrayList<String> ();
 				while (!qNeigh.isEmpty()) {
 					curr = qNeigh.remove();
-					LocalVisMap.add (curr.name);
-					NeighborNode temp = FriendList.get(curr.name).list.front;
-					while (temp != null){
-						if (!LocalVisitMap.contains(temp.name)&&temp.uni.equals(univName)) {
-							q.add(tmp);
-							prevNaybs.put(tmp.name,curr.name);
-							if (tmp.name.equals(end.name)) {
-								break mainloop;
-							}
-						}
+					qClique.add(curr.name);
+					//LocalVisMap.add (curr.name);
+					NeighborNode tempNode = FriendList.get(curr.name).list.front;
+					while (tempNode != null){
+						if (tempNode.uni.equals(univName) && !qClique.contains(tempNode.name)) {
+							qNeigh.add(tempNode);
+						}						
 					}
 				}
+				while (!qClique.isEmpty()) {
+					String str = qClique.remove();
+					FriendTex localCliq = new FriendTex (FriendList.get(str));
+					temp.FriendList.put(str,localCliq);
+					VisitMap.add(str);
+				}
+				Clique.add(temp);				
 			}			
 		}
 			
-		return null;
+		return Clique;
 	}
 	
 	private HashMap<String,Boolean> VisitedMap () {				//When a visited array is needed

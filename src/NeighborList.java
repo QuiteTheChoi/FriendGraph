@@ -21,5 +21,5 @@ public class NeighborList {
 		tail = n;
 		counter++;		
 	}
-	
+			
 }
