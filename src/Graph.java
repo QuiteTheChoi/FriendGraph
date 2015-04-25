@@ -141,14 +141,12 @@ public class Graph {
 					break;
 				} else 
 				{
-					
-					while (curr != null)
-					{
+				
 						if (!q.contains(curr))
 						{
 							q.add(curr);
 						}
-					}
+					
 				}
 			}
 			

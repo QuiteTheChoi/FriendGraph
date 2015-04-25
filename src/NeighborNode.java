@@ -12,4 +12,5 @@ public class NeighborNode {
 		this.next = next;
 	}
 	
+	//Put toString method here
 }
