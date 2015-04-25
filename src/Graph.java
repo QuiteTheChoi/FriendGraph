@@ -8,7 +8,8 @@ import java.lang.*;
 
 public class Graph {
 	
-	public HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();  
+	public HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();
+	public HashMap<String,String> UniversityList = new HashMap<String,String>();
 	
 	public Graph(String graphFile) throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(graphFile));
@@ -26,6 +27,8 @@ public class Graph {
 				String univ = st.nextToken();
 				FriendTex temp = new FriendTex (name,univ);
 				FriendList.put(temp.name, temp);
+				if (!UniversityList.containsKey(univ));
+					UniversityList.put(univ, univ);
 			}
 			else {   //teacher getting added 
 				FriendTex temp = new FriendTex (st.nextToken());
@@ -69,8 +72,49 @@ public class Graph {
 		
 	}
 	
+	public Graph () {
 		
 		public void ShortestPath(String src, String target) throws Exception
+	}
+	
+	public ArrayList cligues (String univName) throws NoSuchElementException {
+		if (!UniversityList.containsKey(univName)) {
+			throw new NoSuchElementException();
+		}
+		
+		int counter = 0;
+		HashMap<Integer,Graph> Clique = new HashMap<Integer,Graph>();
+		HashMap<String,Boolean> VisitMap = this.VisitedMap();
+		
+		Set<String> word = VisitMap.keySet();
+		Iterator<String> itr = word.iterator();
+		
+		while (itr.hasNext()) {						//Iterating through FriendList
+			FriendTex temp = FriendList.get(itr.next());		
+			if (!VisitMap.get(temp.name)) {				//if not visited, start looking at cliques. 
+				
+			}
+			
+		}
+		
+		return null;
+	}
+	
+	private HashMap<String,Boolean> VisitedMap () {				//When a visited array is needed
+		HashMap<String,Boolean> tempMap = new HashMap<String,Boolean>();
+		
+		Set<String> word = FriendList.keySet();  
+		Iterator<String> itr = word.iterator();
+		
+		while (itr.hasNext()) {
+			String key = itr.next();
+			tempMap.put(key, false);			
+		}
+		
+		return tempMap;
+	}
+	
+	public void ShortestPath(String src, String target) throws Exception
 		{
 			if (!FriendList.containsKey(src) || !FriendList.containsKey(target))
 			{
