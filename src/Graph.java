@@ -135,10 +135,8 @@ public class Graph {
 		ArrayList<String> VisitMap = new ArrayList<String> ();
 		//NeighborNode tmp = start.list.front;
 		mainloop:	
-		while (!q.isEmpty())
-			{
+		while (!q.isEmpty()) {
 				curr = q.remove();
-<<<<<<< HEAD
 				VisitMap.add (curr.name);
 				NeighborNode tmp = FriendList.get(curr.name).list.front;
 				while (tmp != null){
@@ -150,25 +148,9 @@ public class Graph {
 						}
 					}
 					tmp = tmp.next;
-=======
-				list.append(curr+", ");
-				if (curr.equals(end))
-				{
-					break;
-				} else 
-				{
-				
-						if (!q.contains(curr))
-						{
-							q.add(curr);
-						}
-					
->>>>>>> origin/master
 				}
-					
-					
-			}
-			
+		}
+		
 		if (!prevNaybs.containsKey(target)) {
 			StringBuilder error = new StringBuilder("no");
 			return error;
@@ -178,11 +160,9 @@ public class Graph {
 				String prevName = prevNaybs.get(target);
 				list.insert(0,", " + target);
 				target = prevName;
-			}
-			
+		}			
 		list.insert(0,start.name);
 		
 		return list;
-	 }
-
+	}
 }
