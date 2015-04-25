@@ -14,6 +14,11 @@ public class FriendTex {
 		
 	}
 	
+	public FriendTex (FriendTex temp) {
+		name = temp.name;
+		university = temp.university;
+	}
+	
 	public boolean equals(FriendTex compareTo) {
 		if (this.name.equals(compareTo.name))
 			return true;

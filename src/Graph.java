@@ -46,11 +46,21 @@ public class Graph {
 			
 			FriendTex firstF = FriendList.get(friend1);
 			FriendTex secondF = FriendList.get(friend2);
+			NeighborNode temp1, temp2;
 			
-			if firstF.university
+			if (firstF.university.equals("")) {
+				temp1 = new NeighborNode (firstF.name);
+			}
+			else {
+				temp1 = new NeighborNode (firstF.name, firstF.university);
+			}
 			
-			NeighborNode temp1 = new NeighborNode (friend1);
-			NeighborNode temp2 = new NeighborNode (friend2);
+			if (secondF.university.equals("")) {
+				temp2 = new NeighborNode (secondF.name);
+			}
+			else {
+				temp2 = new NeighborNode (secondF.name, secondF.university);
+			}
 			
 			if (firstF.list == null) {				//Adding new list to first friend
 				firstF.list = new NeighborList();
@@ -78,26 +88,39 @@ public class Graph {
 		
 	}
 	
-	public ArrayList cliques (String univName) throws NoSuchElementException {
+	public ArrayList<Graph> cliques (String univName) throws NoSuchElementException {
+		univName = univName.toLowerCase();
+		
 		if (!UniversityList.containsKey(univName)) {
 			throw new NoSuchElementException();
 		}
 		
 		int counter = 0;
-		HashMap<Integer,Graph> Clique = new HashMap<Integer,Graph>();
-		HashMap<String,Boolean> VisitMap = this.VisitedMap();
+		ArrayList<Graph> Clique = new ArrayList<Graph>();
+		ArrayList<String> VisitMap = new ArrayList<String> ();			//Anytime Vertex gets added to a local hashmap mark as visited. 
 		
-		Set<String> word = VisitMap.keySet();
+		Set<String> word = FriendList.keySet();
 		Iterator<String> itr = word.iterator();
 		
-		while (itr.hasNext()) {						//Iterating through FriendList
-			FriendTex temp = FriendList.get(itr.next());		
-			if (!VisitMap.get(temp.name)) {				//if not visited, start looking at cliques. 
-				
-			}
-			
+		while (itr.hasNext()) {
+			FriendTex tempTex = new FriendTex (FriendList.get(itr));					//Iterating through FriendList
+			if (!VisitMap.contains(tempTex.name)&& tempTex.university.equals(univName)) {  //Clique has not been made
+				Queue<NeighborNode> qNeigh = new LinkedList<NeighborNode>();
+				Queue<NeighborNode> qClique = new LinkedList<NeighborNode>();
+				NeighborNode curr = new NeighborNode(tempTex.name,tempTex.university);
+				qNeigh.add(curr);
+				ArrayList<String> LocalVisMap = new ArrayList<String> ();
+				while (!qNeigh.isEmpty()) {
+					curr = qNeigh.remove();
+					LocalVisMap.add (curr.name);
+					NeighborNode temp = FriendList.get(curr.name).list.front;
+					while (temp != null){
+						
+					}
+				}
+			}			
 		}
-		
+			
 		return null;
 	}
 	
