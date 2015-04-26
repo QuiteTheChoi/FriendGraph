@@ -12,8 +12,9 @@ public class Graph {
 	public HashMap<String,String> UniversityList = new HashMap<String,String>();
 	
 	public Graph(String graphFile) throws FileNotFoundException {
-		Scanner sc = new Scanner(new File(graphFile));
 		
+		Scanner sc = new Scanner(new File(graphFile));
+			
 		int countOfVertex = sc.nextInt();
 		sc.nextLine();
 			
