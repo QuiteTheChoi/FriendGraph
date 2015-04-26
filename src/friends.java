@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class friends {
@@ -30,8 +31,8 @@ static Scanner stdin = new Scanner(System.in);
 		Graph friends = new Graph(graphFile);
 		
 		char option;
-		while ((option = getOption()) != 'q') {
-			System.out.println(friends);
+		while ((option = getOption()) != '5') {
+			//System.out.println(friends);
 			if (option == '2') {
 				try {
 				System.out.println(friends.ShortestPath("sam", "aparna"));
@@ -40,6 +41,11 @@ static Scanner stdin = new Scanner(System.in);
 					System.out.println("Test error");
 				}
 				
+			}
+			
+			if (option == '3') {
+				ArrayList<Graph> temp = friends.cliques("rutgers");
+				System.out.println("hi");
 			}
 		
 		}

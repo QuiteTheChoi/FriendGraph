@@ -18,9 +18,9 @@ public class NeighborNode {
 		
 	}
 	
-	public NeighborNode(String data, NeighborNode next){ 
-		name = data;
-		this.next = next;
+	public NeighborNode(NeighborNode temp){ 
+		name = temp.name;
+		uni = temp.uni;
 	}
 	
 	public String toString()

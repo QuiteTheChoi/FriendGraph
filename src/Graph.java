@@ -68,7 +68,7 @@ public class Graph {
 				firstF.list.tail = temp2;
 			}
 			else {
-				firstF.list.add(friend2);			//Adding on to list
+				firstF.list.add(temp2);			//Adding on to list
 			}
 			
 			if (secondF.list == null) {
@@ -77,7 +77,7 @@ public class Graph {
 				secondF.list.tail = temp1;
 			}
 			else {
-				secondF.list.add(friend1);
+				secondF.list.add(temp1);
 			}
 			
 		}
@@ -95,7 +95,6 @@ public class Graph {
 			throw new NoSuchElementException();
 		}
 		
-		int counter = 0;
 		ArrayList<Graph> Clique = new ArrayList<Graph>();
 		ArrayList<String> VisitMap = new ArrayList<String> ();			//Anytime Vertex gets added to a local hashmap mark as visited. 
 		
@@ -120,7 +119,10 @@ public class Graph {
 					while (tempNode != null){
 						if (tempNode.uni.equals(univName) && !qClique.contains(tempNode.name)) {
 							qNeigh.add(tempNode);
-						}						
+							tempNode = tempNode.next;
+						}
+						else
+							tempNode = tempNode.next;
 					}
 				}
 				while (!qClique.isEmpty()) {
@@ -129,7 +131,20 @@ public class Graph {
 					temp.FriendList.put(str,localCliq);
 					VisitMap.add(str);
 				}
-				Clique.add(temp);				
+				Set<String> localWord = temp.FriendList.keySet();
+				Iterator<String> localItr = localWord.iterator();
+				
+				while (localItr.hasNext()) {
+					String name = localItr.next();
+					NeighborNode local = FriendList.get(name).list.front;
+					while (local != null) {
+						if (local.uni.equals(univName)) {
+							temp.FriendList.get(name).list.add(new NeighborNode(local.name,local.uni));
+						}
+						local = local.next;
+					}
+				}				
+				Clique.add(temp);			
 			}			
 		}
 			

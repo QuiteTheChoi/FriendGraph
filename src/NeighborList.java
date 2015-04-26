@@ -8,8 +8,8 @@ public class NeighborList {
 	
 	}
 	
-	public void add(String toAdd){
-		NeighborNode  n = new NeighborNode(toAdd);
+	public void add(String name){
+		NeighborNode  n = new NeighborNode(name);
 		
 		if (tail == null && front == null) {
 			front = n;
@@ -22,4 +22,17 @@ public class NeighborList {
 		counter++;		
 	}
 			
+	public void add(NeighborNode temp){
+		NeighborNode  n = new NeighborNode(temp);
+		
+		if (tail == null && front == null) {
+			front = n;
+			tail = n;
+			counter++;
+			return;
+		}
+		tail.next = n;
+		tail = n;
+		counter++;		
+	}
 }

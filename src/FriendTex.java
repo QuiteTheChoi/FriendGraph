@@ -1,7 +1,7 @@
 public class FriendTex {
 	public String name;
 	public String university = "";
-	public NeighborList list = null;
+	public NeighborList list = new NeighborList();
 	
 		
 	public FriendTex (String fName, String uName) {
