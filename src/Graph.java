@@ -88,6 +88,61 @@ public class Graph {
 		
 	}
 	
+	public String toString()
+	{
+		StringBuilder graph = new StringBuilder();
+		int count=0;
+		HashMap<String, ArrayList> namesareforfriends = new HashMap<String, ArrayList>();
+		for (String name: FriendList.keySet())
+		{
+			count++;
+		}
+		graph.append(count+"\n");
+		for (String name: FriendList.keySet())
+		{
+			ArrayList<String> friends = new ArrayList<String>();
+			NeighborNode tmp = FriendList.get(name).list.front;
+			while (tmp != null)
+			{
+				friends.add(tmp.name);
+				tmp = tmp.next;
+			}
+			namesareforfriends.put(name, friends);
+		}
+		for (String name : namesareforfriends.keySet())
+		{
+			graph.append(FriendList.get(name).toString() + "\n");
+		}
+		
+		//dividing line - beyond here there be dragons
+		
+		HashMap<String, ArrayList> printed = new HashMap<String, ArrayList>();
+		
+		for (String name : FriendList.keySet())
+		{
+			ArrayList<String> friends = new ArrayList<String>();
+			printed.put(name, friends); // creates the 'printed' hashmap with empty arraylists
+		}
+		
+		for (String name : namesareforfriends.keySet())
+		{
+			ArrayList<String> traverse = namesareforfriends.get(name);
+			String s = FriendList.get(name).name;
+			
+			for (String n : traverse)
+			{				
+					if(!printed.get(name).contains(n))
+					{
+						printed.get(name).add(n);
+						graph.append(s + "|" + n + "\n");
+						printed.get(n).add(name);
+					}
+				
+			}
+		}
+		return graph.toString();
+	}
+	
 	public ArrayList<Graph> cliques (String univName) throws NoSuchElementException {
 		univName = univName.toLowerCase();
 		

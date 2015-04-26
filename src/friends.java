@@ -31,7 +31,8 @@ static Scanner stdin = new Scanner(System.in);
 		
 		char option;
 		while ((option = getOption()) != 'q') {
-			System.out.println(friends);
+			System.out.println(friends.toString());
+			System.out.println();
 			if (option == '2') {
 				try {
 				System.out.println(friends.ShortestPath("sam", "aparna"));
