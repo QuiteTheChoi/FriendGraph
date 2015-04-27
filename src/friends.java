@@ -14,7 +14,7 @@ static Scanner stdin = new Scanner(System.in);
 		String check = stdin.next();
 		char response = check.charAt(0);
 		while ((response != '1' && response != '2' && response != '3' && response != '4') || check.length() > 1) {
-			System.out.print("\tPlease enter '1', '2', '3', or '4': ");
+			System.out.print("Please enter '1', '2', '3', or '4': ");
 			check = stdin.next();
 			response = check.charAt(0);
 		}
@@ -22,29 +22,43 @@ static Scanner stdin = new Scanner(System.in);
 	}
 	
 	public static void main(String[] args) throws IOException {
-		
-		System.out.print("Enter Friendship Graph file: ");
-		String graphFile = stdin.next();
+		Graph friends;
 		
 		while (true) {
 			try {
-				System.out.print("Please enter Friendship Graph file: ");
+				System.out.print("Please enter a valid Friendship Graph file: ");
 				String graphFile = stdin.next();
-				Graph friends = new Graph(graphFile);
-		
+				friends = new Graph(graphFile);
+				break;
+			}
+			catch (Exception e) {
+				continue;
+			}
+		}
+		System.out.println(friends);
 		
 		char option;
-		
-		while ((option = getOption()) != '5') {
-			//System.out.println(friends);
-			if (option == '2') {
-				try {
-				System.out.println(friends.ShortestPath("sam", "aparna"));
+		while ((option = getOption()) != '4') {
+			if (option == '1') {
+				String friend1,friend2;				
+				System.out.println("Please enter the first friend");
+				friend1 = stdin.next();
+				
+				while (!friends.nameExists(friend1)) {
+					System.out.println("That name does not exist");
+					System.out.println("Please enter the first friend");
+					friend1 = stdin.next();
 				}
-				catch (Exception e){
-					System.out.println("Test error");
+				System.out.println("Please enter the second friend");
+				friend2 = stdin.next();
+				
+				while (!friends.nameExists(friend2)) {
+					System.out.println("That name does not exist");
+					System.out.println("Please enter the second friend");
+					friend2 = stdin.next();
 				}
 				
+				System.out.println(friends.ShortestPath(friend1, friend2));
 			}
 			
 			if (option == '3') {
@@ -57,3 +71,4 @@ static Scanner stdin = new Scanner(System.in);
 	}
 
 }
+	

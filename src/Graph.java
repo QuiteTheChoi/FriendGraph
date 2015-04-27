@@ -221,12 +221,12 @@ public class Graph {
 		return tempMap;
 	}
 
-	public StringBuilder ShortestPath(String src, String target) throws Exception
+	public StringBuilder ShortestPath(String src, String target) throws NoSuchElementException
 	{
 		StringBuilder list = new StringBuilder();
 		if (!FriendList.containsKey(src) || !FriendList.containsKey(target))
 		{
-			throw new Exception("Invalid Input");
+			throw new NoSuchElementException();
 		}
 		
 		src = src.toLowerCase();
@@ -258,7 +258,7 @@ public class Graph {
 		}
 		
 		if (!prevNaybs.containsKey(target)) {
-			StringBuilder error = new StringBuilder("no");
+			StringBuilder error = new StringBuilder("There is no path between these two people.");
 			return error;
 		}
 		
@@ -270,5 +270,12 @@ public class Graph {
 		list.insert(0,start.name);
 		
 		return list;
+	}
+	
+	public boolean nameExists(String name) {
+		if (FriendList.containsKey(name))
+			return true;
+		else
+			return false;
 	}
 }
