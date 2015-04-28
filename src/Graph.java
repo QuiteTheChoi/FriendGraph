@@ -8,7 +8,7 @@ import java.lang.*;
 
 public class Graph {
 	
-	private HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();
+	public HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();
 	private HashMap<String,String> UniversityList = new HashMap<String,String>();
 	
 	public Graph(String graphFile) throws FileNotFoundException {
@@ -66,6 +66,27 @@ public class Graph {
 			secondF.list.add(temp1);	
 		}
 		
+	}
+	
+	public String[] reverseSort(NeighborList n) throws Exception
+	{
+		if (n == null)
+			throw new Exception();
+		
+		int count = 0;
+		NeighborNode tmp = n.front;
+		String[] strings = new String[n.counter];
+		//creates array of names
+		while (tmp != null)
+		{
+			strings[count] = tmp.name;
+			tmp = tmp.next;
+			count++;
+		}
+		//sorts array in reverse alphabetical order
+		Arrays.sort(strings, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
+		
+		return strings;
 	}
 	
 	public Graph () {

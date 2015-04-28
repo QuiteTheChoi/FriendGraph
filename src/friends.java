@@ -20,7 +20,7 @@ static Scanner stdin = new Scanner(System.in);
 		return response;
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		Graph friends;
 		
 		while (true) {
