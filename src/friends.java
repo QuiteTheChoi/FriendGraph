@@ -7,10 +7,11 @@ static Scanner stdin = new Scanner(System.in);
 	
 	static char getOption() {
 		System.out.println("\tWhat would you like to do?");
-		System.out.println("(1) Connectors");
+		System.out.println("(1) List all the students at a particular university");
 		System.out.println("(2) Shortest Intro Chain");
 		System.out.println("(3) Cliques");
-		System.out.println("(4) Quit");
+		System.out.println("(4) Connectors");
+		System.out.println("(5) Quit");
 		String check = stdin.next();
 		char response = check.charAt(0);
 		while ((response != '1' && response != '2' && response != '3' && response != '4' && response != '5') || check.length() > 1) {
@@ -45,8 +46,7 @@ static Scanner stdin = new Scanner(System.in);
 			
 			if (option == '3') {
 				ArrayList<Graph> temp = friends.cliques("rutgers");
-				for (Graph G: temp) {
-					System.out.println(G.toString());				}
+				System.out.println("hi");
 			}
 		
 		}
