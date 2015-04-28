@@ -13,10 +13,17 @@ public class NeighborList {
 		
 		if (tail == null && front == null) {
 			front = n;
-			tail = n;
 			counter++;
 			return;
 		}
+		
+		if (tail == null) {
+			tail = n;
+			front.next = n;			
+			counter++;
+			return;
+		}
+		
 		tail.next = n;
 		tail = n;
 		counter++;		
