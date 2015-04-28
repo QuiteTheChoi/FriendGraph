@@ -1,6 +1,5 @@
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class friends {
 static Scanner stdin = new Scanner(System.in);
@@ -45,25 +44,47 @@ static Scanner stdin = new Scanner(System.in);
 				friend1 = stdin.next();
 				
 				while (!friends.nameExists(friend1)) {
-					System.out.println("That name does not exist");
-					System.out.println("Please enter the first friend");
+					System.out.println("Please enter a valid name");
 					friend1 = stdin.next();
 				}
+				
 				System.out.println("Please enter the second friend");
 				friend2 = stdin.next();
 				
-				while (!friends.nameExists(friend2)) {
-					System.out.println("That name does not exist");
-					System.out.println("Please enter the second friend");
+				while (!friends.nameExists(friend2) || friend2.equals(friend1)) {
+					System.out.println("Please enter a valid name");
 					friend2 = stdin.next();
 				}
 				
 				System.out.println(friends.ShortestPath(friend1, friend2));
+			}			
+			if (option == '2') {
+				ArrayList<Graph> temp;
+				String univName;			
+				
+				System.out.println("Please enter a university");
+				 Scanner in = new Scanner(System.in);
+				univName = in.nextLine();
+								
+				while (!friends.univExists(univName)) {
+					System.out.println("That univeristy is not on this list");
+					System.out.println("Please enter a valid university");
+					univName = in.nextLine();
+				}
+				
+				temp = friends.cliques(univName);
+				
+				int counter = 1;
+				for (Graph G: temp) {
+					System.out.println("Clique: " + counter);
+					System.out.println(G);
+					counter++;
+				}
+				
 			}
 			
 			if (option == '3') {
-				ArrayList<Graph> temp = friends.cliques("rutgers");
-				System.out.println("hi");
+				System.out.println("Still a work in progress");
 			}
 		
 		}

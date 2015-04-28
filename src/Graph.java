@@ -8,8 +8,8 @@ import java.lang.*;
 
 public class Graph {
 	
-	public HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();
-	public HashMap<String,String> UniversityList = new HashMap<String,String>();
+	private HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();
+	private HashMap<String,String> UniversityList = new HashMap<String,String>();
 	
 	public Graph(String graphFile) throws FileNotFoundException {
 		
@@ -62,25 +62,8 @@ public class Graph {
 			else {
 				temp2 = new NeighborNode (secondF.name, secondF.university);
 			}
-			
-			if (firstF.list == null) {				//Adding new list to first friend
-				firstF.list = new NeighborList();
-				firstF.list.front = temp2;
-				firstF.list.tail = temp2;
-			}
-			else {
-				firstF.list.add(temp2);			//Adding on to list
-			}
-			
-			if (secondF.list == null) {
-				secondF.list = new NeighborList();
-				secondF.list.front = temp1;
-				secondF.list.tail = temp1;
-			}
-			else {
-				secondF.list.add(temp1);
-			}
-			
+			firstF.list.add(temp2);			//Adding on to list
+			secondF.list.add(temp1);	
 		}
 		
 	}
@@ -90,7 +73,11 @@ public class Graph {
 	}
 	
 	public String toString()
-	{
+	{	
+		if (FriendList.isEmpty()) {
+			return ("This friends list is empty");
+		}
+		
 		StringBuilder graph = new StringBuilder();
 		int count=0;
 		HashMap<String, ArrayList> namesareforfriends = new HashMap<String, ArrayList>();
@@ -137,8 +124,7 @@ public class Graph {
 						printed.get(name).add(n);
 						graph.append(s + "|" + n + "\n");
 						printed.get(n).add(name);
-					}
-				
+					}			
 			}
 		}
 		return graph.toString();
@@ -161,16 +147,13 @@ public class Graph {
 			FriendTex tempTex = new FriendTex (FriendList.get(itr.next()));					//Iterating through FriendList
 			Graph temp = new Graph();
 			if (!VisitMap.contains(tempTex.name)&& tempTex.university.equals(univName)) {  //Clique has not been made
-				//temp.FriendList.put(tempTex.name, tempTex);
 				Queue<NeighborNode> qNeigh = new LinkedList<NeighborNode>();
 				Queue<String> qClique = new LinkedList<String>();
 				NeighborNode curr = new NeighborNode(tempTex.name,tempTex.university);
 				qNeigh.add(curr);
-				//ArrayList<String> LocalVisMap = new ArrayList<String> ();
 				while (!qNeigh.isEmpty()) {
 					curr = qNeigh.remove();
 					qClique.add(curr.name);
-					//LocalVisMap.add (curr.name);
 					NeighborNode tempNode = FriendList.get(curr.name).list.front;
 					while (tempNode != null){
 						if (tempNode.uni.equals(univName) && !qClique.contains(tempNode.name)) {
@@ -242,19 +225,19 @@ public class Graph {
 		ArrayList<String> VisitMap = new ArrayList<String> ();
 		mainloop:	
 		while (!q.isEmpty()) {
-				curr = q.remove();
-				VisitMap.add (curr.name);
-				NeighborNode tmp = FriendList.get(curr.name).list.front;
-				while (tmp != null){
-					if (!VisitMap.contains(tmp.name)) {
-						q.add(tmp);
-						prevNaybs.put(tmp.name,curr.name);
-						if (tmp.name.equals(end.name)) {
-							break mainloop;
-						}
+			curr = q.remove();
+			VisitMap.add (curr.name);
+			NeighborNode tmp = FriendList.get(curr.name).list.front;
+			while (tmp != null){
+				if (!VisitMap.contains(tmp.name)) {
+					q.add(tmp);
+					prevNaybs.put(tmp.name,curr.name);
+					if (tmp.name.equals(end.name)) {
+						break mainloop;
 					}
-					tmp = tmp.next;
 				}
+				tmp = tmp.next;
+			}
 		}
 		
 		if (!prevNaybs.containsKey(target)) {
@@ -264,7 +247,7 @@ public class Graph {
 		
 		while (prevNaybs.containsKey(target)) {
 				String prevName = prevNaybs.get(target);
-				list.insert(0,", " + target);
+				list.insert(0,"--" + target);
 				target = prevName;
 		}			
 		list.insert(0,start.name);
@@ -277,5 +260,13 @@ public class Graph {
 			return true;
 		else
 			return false;
-	}
+	}	
+	
+	public boolean univExists(String name) {
+		if (UniversityList.containsKey(name))
+			return true;
+		else
+			return false;
+	}	
+	
 }
