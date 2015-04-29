@@ -19,7 +19,6 @@ jane|bob
 jane|kaitlin
 kaitlin|nick
 bob|samir
-sergei|aparna
 samir|aparna
 aparna|ricardo
 nick|ricardo

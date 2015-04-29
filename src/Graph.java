@@ -8,7 +8,7 @@ import java.lang.*;
 
 public class Graph {
 	
-	public HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();
+	private HashMap<String, FriendTex> FriendList = new HashMap<String, FriendTex> ();
 	private HashMap<String,String> UniversityList = new HashMap<String,String>();
 	
 	public Graph(String graphFile) throws FileNotFoundException {
@@ -66,27 +66,6 @@ public class Graph {
 			secondF.list.add(temp1);	
 		}
 		
-	}
-	
-	public String[] reverseSort(NeighborList n) throws Exception
-	{
-		if (n == null)
-			throw new Exception();
-		
-		int count = 0;
-		NeighborNode tmp = n.front;
-		String[] strings = new String[n.counter];
-		//creates array of names
-		while (tmp != null)
-		{
-			strings[count] = tmp.name;
-			tmp = tmp.next;
-			count++;
-		}
-		//sorts array in reverse alphabetical order
-		Arrays.sort(strings, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
-		
-		return strings;
 	}
 	
 	public Graph () {
@@ -274,6 +253,56 @@ public class Graph {
 		list.insert(0,start.name);
 		
 		return list;
+	}
+		
+	public String porn () {
+		StringBuilder names = new StringBuilder();
+		ArrayList<String> VisitMap = new ArrayList<String>();
+		ArrayList<String> connectors = new ArrayList<String>();
+		
+		
+		for (String s: FriendList.keySet()) {
+			FriendTex temp = FriendList.get(s);
+			if (!VisitMap.contains(s) && temp.list.counter == 1) {
+				porn(temp, VisitMap, temp.name, connectors,0);
+			}
+			
+		}
+		
+		names.append(connectors.get(0));
+		
+		for(int i = 1; i < connectors.size(); i++) 
+			names.insert(0, connectors.get(i)+", ");
+		
+		names.insert(0, "\t\tConnectors: ");
+		
+		return names.toString();
+	}
+	
+	public void porn(FriendTex curr, ArrayList<String> VisitMap, String startName, ArrayList<String> connectors, int DFSnum) {
+		DFSnum++;
+		curr.dfsNum = DFSnum;
+		curr.back = DFSnum;
+		VisitMap.add(curr.name);
+		
+		NeighborNode temp = curr.list.front;
+		
+		while (temp != null) {
+			FriendTex tempTex = FriendList.get(temp.name);
+			if (!VisitMap.contains(tempTex.name)) {
+				porn (tempTex, VisitMap, startName,connectors,DFSnum);
+				if (!curr.name.equals(startName) && curr.dfsNum <= tempTex.back) {
+					if (!connectors.contains(curr.name))
+						connectors.add(curr.name);
+				}
+				if (curr.dfsNum > tempTex.back)
+					curr.back = Math.min(curr.back, tempTex.back);
+			}
+			else
+				curr.back = Math.min(curr.back, tempTex.dfsNum);
+			temp = temp.next;
+		}
+		
 	}
 	
 	public boolean nameExists(String name) {

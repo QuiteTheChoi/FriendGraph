@@ -2,6 +2,8 @@ public class FriendTex {
 	public String name;
 	public String university = "";
 	public NeighborList list = new NeighborList();
+	public int dfsNum = 0;
+	public int back = 0;
 	
 		
 	public FriendTex (String fName, String uName) {

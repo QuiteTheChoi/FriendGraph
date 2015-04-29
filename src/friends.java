@@ -56,7 +56,6 @@ static Scanner stdin = new Scanner(System.in);
 					friend2 = stdin.next();
 				}
 				
-				System.out.println(friends.ShortestPath(friend1, friend2));
 			}			
 			if (option == '2') {
 				ArrayList<Graph> temp;
@@ -84,7 +83,7 @@ static Scanner stdin = new Scanner(System.in);
 			}
 			
 			if (option == '3') {
-				System.out.println("Still a work in progress");
+				System.out.println(friends.porn());
 			}
 		
 		}
