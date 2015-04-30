@@ -38,37 +38,46 @@ static Scanner stdin = new Scanner(System.in);
 		
 		char option;
 		while ((option = getOption()) != '4') {
+			mainloop:
 			if (option == '1') {
 				String friend1,friend2;				
 				System.out.println("Please enter the first friend");
 				friend1 = stdin.next();
 				
 				while (!friends.nameExists(friend1)) {
-					System.out.println("Please enter a valid name");
+					System.out.println("Please enter a valid name or (9) to return to main menu");
 					friend1 = stdin.next();
+					if (friend1.equals("9"))
+						break mainloop;
 				}
 				
 				System.out.println("Please enter the second friend");
 				friend2 = stdin.next();
 				
 				while (!friends.nameExists(friend2) || friend2.equals(friend1)) {
-					System.out.println("Please enter a valid name");
+					System.out.println("Please enter a valid name or (9) to return to the main menu");
 					friend2 = stdin.next();
+					if (friend2.equals("9"))
+						break mainloop;
 				}
 				
+				System.out.println(friends.ShortestPath(friend1,friend2));				
 			}			
+			mainloop:
 			if (option == '2') {
 				ArrayList<Graph> temp;
 				String univName;			
 				
 				System.out.println("Please enter a university");
-				 Scanner in = new Scanner(System.in);
+				Scanner in = new Scanner(System.in);
 				univName = in.nextLine();
 								
 				while (!friends.univExists(univName)) {
 					System.out.println("That univeristy is not on this list");
-					System.out.println("Please enter a valid university");
+					System.out.println("Please enter a valid university or (9) to return to the main menu");
 					univName = in.nextLine();
+					if (univName.equals("9"))
+						break mainloop;
 				}
 				
 				temp = friends.cliques(univName);
@@ -83,7 +92,7 @@ static Scanner stdin = new Scanner(System.in);
 			}
 			
 			if (option == '3') {
-				System.out.println(friends.porn());
+				System.out.println(friends.poro());
 			}
 		
 		}

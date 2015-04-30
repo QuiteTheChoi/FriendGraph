@@ -16,7 +16,12 @@ public class Graph {
 		Scanner sc = new Scanner(new File(graphFile));
 			
 		int countOfVertex = sc.nextInt();
-		sc.nextLine();
+		if (sc.hasNext())
+			sc.nextLine();
+		
+		if (countOfVertex == 0) {
+			return;
+		}
 			
 		for (int i = 0; i < countOfVertex; i ++) {
 			String str = sc.nextLine();
@@ -255,7 +260,7 @@ public class Graph {
 		return list;
 	}
 		
-	public String porn () {
+	public String poro () {
 		StringBuilder names = new StringBuilder();
 		ArrayList<String> VisitMap = new ArrayList<String>();
 		ArrayList<String> connectors = new ArrayList<String>();
@@ -264,9 +269,14 @@ public class Graph {
 		for (String s: FriendList.keySet()) {
 			FriendTex temp = FriendList.get(s);
 			if (!VisitMap.contains(s) && temp.list.counter == 1) {
-				porn(temp, VisitMap, temp.name, connectors,0);
+				poro(temp, VisitMap, temp.name, connectors,0);
 			}
 			
+		}
+		
+		if (connectors.isEmpty()) {
+			names.append("There are no connectors");
+			return names.toString();
 		}
 		
 		names.append(connectors.get(0));
@@ -279,7 +289,7 @@ public class Graph {
 		return names.toString();
 	}
 	
-	public void porn(FriendTex curr, ArrayList<String> VisitMap, String startName, ArrayList<String> connectors, int DFSnum) {
+	public void poro(FriendTex curr, ArrayList<String> VisitMap, String startName, ArrayList<String> connectors, int DFSnum) {
 		DFSnum++;
 		curr.dfsNum = DFSnum;
 		curr.back = DFSnum;
@@ -290,7 +300,7 @@ public class Graph {
 		while (temp != null) {
 			FriendTex tempTex = FriendList.get(temp.name);
 			if (!VisitMap.contains(tempTex.name)) {
-				porn (tempTex, VisitMap, startName,connectors,DFSnum);
+				poro (tempTex, VisitMap, startName,connectors,DFSnum);
 				if (!curr.name.equals(startName) && curr.dfsNum <= tempTex.back) {
 					if (!connectors.contains(curr.name))
 						connectors.add(curr.name);
